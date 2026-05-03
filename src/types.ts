@@ -14,19 +14,19 @@ import type { StickyNoteColor } from "@mirohq/websdk-types";
 export type ColorScheme = "blue" | "green" | "purple" | "orange";
 
 /**
- * Palette of hex colours used throughout a Decision Canvas.
- * Each scheme defines colours for the main frame, section headers, and sticky
- * notes so the whole canvas looks visually consistent.
+ * Palette of colours applied to the three horizontal band backgrounds.
+ * Each scheme lets users vary the overall look while keeping the per-section
+ * semantic colours (e.g. facts = light-blue, constraints = light-red) fixed.
  */
 export interface CanvasPalette {
-  /** Background colour for the outer Decision Canvas frame. */
+  /** Fill colour for the outer canvas frame. */
   frameFill: string;
-  /** Fill colour for section header shapes. */
-  headerFill: string;
-  /** Text colour used on section headers. */
-  headerText: string;
-  /** Fill colour for sticky notes inside sections (must be a StickyNoteColor value). */
-  stickyFill: StickyNoteColor;
+  /** Fill colour for the top band (Decision Statement area). */
+  topBandFill: string;
+  /** Fill colour for the middle band (brainstorming columns). */
+  midBandFill: string;
+  /** Fill colour for the bottom band (outcome area). */
+  botBandFill: string;
 }
 
 // ---------------------------------------------------------------------------
@@ -55,18 +55,33 @@ export interface DecisionCanvasConfig {
 // Section definitions
 // ---------------------------------------------------------------------------
 
-/** A single section inside the Decision Canvas layout. */
+/**
+ * A single section inside the Decision Canvas.
+ * Position and size are expressed relative to the canvas top-left origin
+ * so the template can be placed anywhere on the board.
+ */
 export interface CanvasSection {
-  /** Human-readable section name rendered as the header. */
+  /** Human-readable section name used as the box header. */
   label: string;
-  /** Emoji prefix shown in the section header. */
-  emoji: string;
-  /** Helper text pre-populated as a sticky note inside the section. */
+  /** Helper text pre-populated inside the section. */
   placeholder: string;
-  /** Column index (0-based) within the two-column grid layout. */
-  col: number;
-  /** Row index (0-based) within the two-column grid layout. */
-  row: number;
+  /** Top-left X coordinate relative to the canvas origin (board units). */
+  x: number;
+  /** Top-left Y coordinate relative to the canvas origin (board units). */
+  y: number;
+  /** Section box width (board units). */
+  width: number;
+  /** Section box height (board units). */
+  height: number;
+  /** Hex fill colour for the section background box. */
+  boxFill: string;
+  /**
+   * Sticky-note colour placed inside the section.
+   * Set to `null` to skip creating a sticky note (used for narrow sections).
+   */
+  stickyFill: StickyNoteColor | null;
+  /** Hex border colour for the section box. Defaults to "#333333". */
+  borderColor?: string;
 }
 
 // ---------------------------------------------------------------------------
@@ -77,7 +92,7 @@ export interface CanvasSection {
 export interface CreatedCanvas {
   /** The outer frame that contains the entire canvas. */
   frameId: string;
-  /** IDs of all section header shapes. */
+  /** IDs of all section box shapes (one per section). */
   sectionHeaderIds: string[];
   /** IDs of all placeholder sticky notes. */
   stickyNoteIds: string[];

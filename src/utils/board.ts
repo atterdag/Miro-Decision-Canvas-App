@@ -53,6 +53,12 @@ export interface CreateRectangleOptions {
   content?: string;
   /** Font size in points. Defaults to 14. */
   fontSize?: number;
+  /** Vertical text alignment inside the shape. Defaults to "middle". */
+  textAlignVertical?: "top" | "middle" | "bottom";
+  /** Hex border stroke colour. Defaults to no visible border (borderWidth=0). */
+  borderColor?: string;
+  /** Border stroke width in board units. Defaults to 0 (no border). */
+  borderWidth?: number;
   /** Parent frame ID. */
   parentId?: string;
 }
@@ -67,9 +73,12 @@ export async function createRectangle(
     width,
     height,
     fillColor,
-    textColor = "#ffffff",
+    textColor = "#1a1a2e",
     content = "",
     fontSize = 14,
+    textAlignVertical = "middle",
+    borderColor = "#000000",
+    borderWidth = 0,
     parentId,
   } = options;
 
@@ -87,8 +96,9 @@ export async function createRectangle(
       fontSize,
       fontFamily: "open_sans",
       textAlign: "left",
-      textAlignVertical: "middle",
-      borderWidth: 0,
+      textAlignVertical,
+      borderColor,
+      borderWidth,
     },
   });
 }

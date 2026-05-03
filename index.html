@@ -167,7 +167,7 @@
 
       .template-preview__sections {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
         gap: 6px;
       }
 
@@ -179,6 +179,16 @@
         font-size: 11px;
         color: #444;
       }
+
+      .template-preview__section--wide {
+        grid-column: span 3;
+      }
+
+      .template-preview__section--facts       { background: #e3f2fd; }
+      .template-preview__section--constraints { background: #ffebee; }
+      .template-preview__section--principles  { background: #fffde7; }
+      .template-preview__section--options     { background: #f3e5f5; }
+      .template-preview__section--outcome     { background: #e8f5e9; grid-column: span 2; }
     </style>
   </head>
   <body>
@@ -193,8 +203,9 @@
       </div>
 
       <p class="panel__description">
-        Create a structured Decision Canvas on your board to capture options,
-        pros &amp; cons, the final decision, and rationale.
+        Create a structured Decision Canvas on your board. Three horizontal
+        bands capture the context, options, and outcome of any decision in
+        one collaborative frame.
       </p>
 
       <hr class="divider" />
@@ -203,12 +214,18 @@
       <div class="template-preview">
         <p class="template-preview__title">Canvas sections</p>
         <div class="template-preview__sections">
-          <div class="template-preview__section">🎯 Problem Statement</div>
-          <div class="template-preview__section">💡 Options</div>
-          <div class="template-preview__section">⚖️ Pros &amp; Cons</div>
-          <div class="template-preview__section">✅ Decision</div>
-          <div class="template-preview__section">📝 Rationale</div>
-          <div class="template-preview__section">🚀 Next Steps</div>
+          <!-- Top band -->
+          <div class="template-preview__section" style="grid-column:span 2">📋 Decision Statement</div>
+          <div class="template-preview__section">🎯 Success Criteria</div>
+          <!-- Middle band -->
+          <div class="template-preview__section template-preview__section--facts">📊 Facts</div>
+          <div class="template-preview__section template-preview__section--constraints">🚫 Constraints</div>
+          <div class="template-preview__section template-preview__section--principles">🧭 Principles</div>
+          <div class="template-preview__section template-preview__section--options" style="grid-column:span 3">💡 Options</div>
+          <!-- Bottom band -->
+          <div class="template-preview__section template-preview__section--outcome">✅ Decision Outcome</div>
+          <div class="template-preview__section">⚠️ Risks &amp; Trade-offs</div>
+          <div class="template-preview__section">🚀 Ownership &amp; Next Steps</div>
         </div>
       </div>
 
@@ -221,7 +238,7 @@
           <input
             id="canvas-title"
             type="text"
-            placeholder="e.g. Choose cloud provider"
+            placeholder="e.g. Architecture decision – Design Sprint"
             maxlength="120"
           />
         </div>
