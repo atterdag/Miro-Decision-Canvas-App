@@ -1,0 +1,17 @@
+{
+  "name": "miro-decision-canvas-app",
+  "version": "1.0.0",
+  "description": "A Miro app that creates a Decision Canvas template on the board",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@mirohq/websdk-types": "^2.16.1",
+    "typescript": "^5.8.3",
+    "vite": "^6.4.2"
+  }
+}
