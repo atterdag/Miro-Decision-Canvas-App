@@ -2,18 +2,37 @@
 
 A Miro app built with the [Miro Web SDK](https://developers.miro.com/docs/web-sdk-overview), TypeScript, and Vite. It adds a toolbar icon to any board that — when clicked — opens a panel and lets you stamp a structured **Decision Canvas** template directly onto your board.
 
+The canvas spans **1920 × 1080 board units** and is organised into three horizontal bands (context, analysis, outcome) containing nine labelled sections, each pre-populated with a colour-coded sticky note.
+
 ## What is a Decision Canvas?
 
-A Decision Canvas is a visual framework for making and documenting decisions. It is divided into six sections:
+A Decision Canvas is a visual framework for making and documenting decisions. It is arranged as **three horizontal bands**, each grouping related sections:
+
+### 🟦 Top band – Context (light grey)
 
 | Section | Purpose |
 |---|---|
-| 🎯 Problem Statement | Describe the decision that needs to be made |
-| 💡 Options | List all alternatives being considered |
-| ⚖️ Pros & Cons | Capture advantages and disadvantages for each option |
-| ✅ Decision | Record the chosen option |
-| 📝 Rationale | Explain the reasoning behind the choice |
-| 🚀 Next Steps | Define concrete follow-up actions |
+| 📋 Decision Statement | State the decision that must be made in this session |
+| 🎯 Success Criteria | Define what a good outcome looks like (commitment, executability, ownership) |
+
+### ⬜ Middle band – Analysis (white)
+
+| Section | Fill colour | Purpose |
+|---|---|---|
+| 📊 Facts | `#e3f2fd` (light blue) | Known facts and data relevant to the decision |
+| 🚫 Constraints | `#ffebee` (light red) | Limitations, non-negotiables, and hard constraints |
+| 🧭 Principles | `#fffde7` (light yellow) | Design principles and values to guide the choice |
+| 💡 Options | `#f3e5f5` (light purple) | All options and alternatives being considered |
+
+### 🟩 Bottom band – Outcome (light green)
+
+| Section | Purpose |
+|---|---|
+| ✅ Decision Outcome | Record the chosen option, who decided, and when |
+| ⚠️ Risks & Trade-offs | Known risks and trade-offs of the chosen option |
+| 🚀 Ownership & Next Steps | Owners, due dates, and concrete follow-up actions |
+
+The canvas is created at **1920 × 1080 board units** to match a standard widescreen viewport.
 
 ## Repository structure
 
@@ -97,22 +116,22 @@ Miro toolbar icon click
         │           calls createDecisionCanvas()
         ▼
   src/template/decisionCanvas.ts
-        │           builds frame + sections + sticky notes
-        │           using helpers from src/utils/board.ts
+        │           builds frame + 3 band backgrounds + 9 section boxes
+        │           + sticky notes, using helpers from src/utils/board.ts
         ▼
   Miro board  ──── canvas appears, viewport zooms to it
 ```
 
 ## Colour schemes
 
-Four built-in colour schemes are available:
+Four built-in colour schemes are available. Each scheme changes the **band background fills** while the semantic section fills (Facts, Constraints, etc.) remain fixed.
 
-| Scheme | Header colour |
-|---|---|
-| Blue (default) | `#4262ff` |
-| Green | `#1a9c45` |
-| Purple | `#7c3aed` |
-| Orange | `#e07b00` |
+| Scheme | Top band | Middle band | Bottom band |
+|---|---|---|---|
+| Blue (default) | `#f2f2f2` | `#ffffff` | `#e8f5e9` |
+| Green | `#e8f5e9` | `#f9fbe7` | `#c8e6c9` |
+| Purple | `#f3e5f5` | `#fce4ec` | `#ede7f6` |
+| Orange | `#fff8e1` | `#fff3e0` | `#ffe0b2` |
 
 ## Deploying to production
 
