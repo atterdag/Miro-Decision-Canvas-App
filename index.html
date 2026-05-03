@@ -167,7 +167,7 @@
 
       .template-preview__sections {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: repeat(4, 1fr);
         gap: 6px;
       }
 
@@ -178,10 +178,6 @@
         padding: 6px 8px;
         font-size: 11px;
         color: #444;
-      }
-
-      .template-preview__section--wide {
-        grid-column: span 3;
       }
 
       .template-preview__section--facts       { background: #e3f2fd; }
@@ -215,13 +211,13 @@
         <p class="template-preview__title">Canvas sections</p>
         <div class="template-preview__sections">
           <!-- Top band -->
-          <div class="template-preview__section" style="grid-column:span 2">📋 Decision Statement</div>
+          <div class="template-preview__section" style="grid-column:span 3">📋 Decision Statement</div>
           <div class="template-preview__section">🎯 Success Criteria</div>
-          <!-- Middle band -->
+          <!-- Middle band – 4 equal columns -->
           <div class="template-preview__section template-preview__section--facts">📊 Facts</div>
           <div class="template-preview__section template-preview__section--constraints">🚫 Constraints</div>
           <div class="template-preview__section template-preview__section--principles">🧭 Principles</div>
-          <div class="template-preview__section template-preview__section--options" style="grid-column:span 3">💡 Options</div>
+          <div class="template-preview__section template-preview__section--options">💡 Options</div>
           <!-- Bottom band -->
           <div class="template-preview__section template-preview__section--outcome">✅ Decision Outcome</div>
           <div class="template-preview__section">⚠️ Risks &amp; Trade-offs</div>
