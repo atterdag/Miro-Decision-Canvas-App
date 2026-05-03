@@ -101,6 +101,8 @@ export interface CreateStickyNoteOptions {
   x: number;
   y: number;
   width?: number;
+  /** Height of the sticky note (board units). Defaults to the same value as width. */
+  height?: number;
   content: string;
   fillColor?: StickyNoteColor;
   /** Parent frame ID to attach the sticky to. */
@@ -113,11 +115,12 @@ export async function createStickyNote(
 ): Promise<StickyNote> {
   const { x, y, width = 200, content, fillColor = "gray", parentId } =
     options;
+  const height = options.height ?? width;
 
   return miro.board.createStickyNote({
     content,
     x: x + width / 2,
-    y: y + width / 2,
+    y: y + height / 2,
     width,
     parentId,
     style: {
