@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <!-- Outer frame -->
+  <rect x="4" y="4" width="40" height="40" rx="6" fill="#4262ff" />
+  <!-- Inner grid lines -->
+  <line x1="24" y1="14" x2="24" y2="34" stroke="#ffffff" stroke-width="1.5" stroke-opacity="0.6"/>
+  <line x1="12" y1="24" x2="36" y2="24" stroke="#ffffff" stroke-width="1.5" stroke-opacity="0.6"/>
+  <!-- Top-left section -->
+  <rect x="9"  y="9"  width="12" height="12" rx="2" fill="#ffffff" fill-opacity="0.25"/>
+  <!-- Top-right section -->
+  <rect x="27" y="9"  width="12" height="12" rx="2" fill="#ffffff" fill-opacity="0.25"/>
+  <!-- Bottom-left section -->
+  <rect x="9"  y="27" width="12" height="12" rx="2" fill="#ffffff" fill-opacity="0.25"/>
+  <!-- Bottom-right section (highlighted – represents the decision) -->
+  <rect x="27" y="27" width="12" height="12" rx="2" fill="#ffffff" fill-opacity="0.65"/>
+  <!-- Checkmark inside the highlighted section -->
+  <polyline points="30,33 32,36 36,30" stroke="#4262ff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
